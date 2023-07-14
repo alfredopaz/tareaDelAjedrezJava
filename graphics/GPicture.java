@@ -1,12 +1,12 @@
+package graphics;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
 /**
- * 
- * @author Alfredo Paz
- * Adaptado del material de Burroughes, Heijltjes, Walder para Haskell
- *
+ * This class interprets Pictures objects as a graphics object
+ * You don't need understad this code
  */
 public class GPicture extends Component {
 	private Picture pic;
@@ -31,7 +31,7 @@ public class GPicture extends Component {
 	}
 	
 	/**
-	 * Interpreter from String to a line draw
+	 * Interprete a String as a sequence of lines
 	 * @param g, Graphics context.
 	 * @param y, Row number
 	 * @param s, The string to be interpreted.
@@ -61,7 +61,7 @@ public class GPicture extends Component {
 	}
 	
 	/**
-	 * Interpreter from char to color
+	 * Interprete the color of a char
 	 * @param c, a char to be interpreted
 	 * @return
 	 */
