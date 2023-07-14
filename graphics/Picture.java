@@ -1,9 +1,11 @@
+package graphics;
+
 import java.util.Arrays;
 import java.util.Iterator;
+
 /**
- * 
- * @author Alfredo Paz
- * Adaptado del material de Burroughes, Heijltjes, Walder para Haskell
+ * This class represents an image with an array of Strings.
+ * You can see an String array as a two dimensional array of chars. 
  *
  */
 public class Picture implements Iterable<String>{
@@ -12,7 +14,7 @@ public class Picture implements Iterable<String>{
 	public final int length;
 	
 	/**
-	 * Only can create Pictures with static methods.
+	 * It's only allowed create Pictures with static methods.
 	 * @param img, Character image.
 	 */
 	private Picture(String[] img){
@@ -22,27 +24,44 @@ public class Picture implements Iterable<String>{
 			width = Math.max(width, s.length());
 	}
 	
+  /**
+   * This must be used to invert the color of an image
+   * @param c A character to be inverted (in color way)
+   */
 	private byte invColor(byte c){
 		byte ic;
 		switch (c) {
-		case '_': ic = '='; break;
-		case '=': ic = '_'; break;
-		case '.': ic = '@'; break;
-		case '@': ic = '.'; break;
-		default: ic = c; break;
+		  case '_': ic = '='; break;
+		  case '=': ic = '_'; break;
+		  case '.': ic = '@'; break;
+		  case '@': ic = '.'; break;
+		  default: ic = c; break;
 		}
 		return ic;
 	}
 	
+  /**
+   * used to overlay a the character c2 over the character c1
+   * @param c1 the character over
+   * @param c2 the character under
+   */
 	private byte overlay(byte c1, byte c2){
 		if(c1 == ' ') return c2;
 		return c1;
 	}
 	
+  /**
+   * The width of the array, it must be the 
+   * most large row
+   */
 	public int getWidth() {
 		return width;
 	}
 
+  /**
+   * The height of the array, it must be the
+   * lenght of the base array
+   */
 	public int getHeight() {
 		return length;
 	}
@@ -51,7 +70,8 @@ public class Picture implements Iterable<String>{
 	 * Vertical Mirror Image 
 	 * @return a new Picture, the vertical mirror.
 	 */
-	public Picture verticalMirror(){
+	public Picture voltearV(){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -59,7 +79,8 @@ public class Picture implements Iterable<String>{
 	 * Horizontal Mirror Image
 	 * @return a new Picture, the horizontal mirror.
 	 */
-	public Picture horizontalMirror(){
+	public Picture voltearH(){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -68,7 +89,8 @@ public class Picture implements Iterable<String>{
 	 * Negative Color
 	 * @return a new Picture, the negative color.
 	 */
-	public Picture negative(){
+	public Picture invertir(){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -77,7 +99,8 @@ public class Picture implements Iterable<String>{
 	 * @param p, the neighbor image
 	 * @return a new image
 	 */
-	public Picture join(Picture p){
+	public Picture alLado(Picture p){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -86,7 +109,8 @@ public class Picture implements Iterable<String>{
 	 * @param p, the neighbor image
 	 * @return a new image
 	 */
-	public Picture down(Picture p){
+	public Picture encima(Picture p){
+		String[] img = new String[this.img.length + p.img.length];
 		return new Picture(img);
 	}
 	
@@ -95,7 +119,8 @@ public class Picture implements Iterable<String>{
 	 * @param p, the picture that will be on the behind.
 	 * @return a new picture
 	 */
-	public Picture under(Picture p){
+	public Picture superponer(Picture p){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -104,7 +129,8 @@ public class Picture implements Iterable<String>{
 	 * @param n, a positive integer greater than 0.
 	 * @return a new picture.
 	 */
-	public Picture repeatH(int n){
+	public Picture repetirH(int n){
+		String[] img = new String[this.img.length];
 		return new Picture(img);
 	}
 	
@@ -113,11 +139,12 @@ public class Picture implements Iterable<String>{
 	 * @param n, a positive integer greater than 0.
 	 * @return a new picture.
 	 */
-	public Picture repeatV(int n){
+	public Picture repetirV(int n){
+		String[] img = new String[this.img.length * n];
 		return new Picture(img);
 	}
 	
-	public static Picture square(){
+	public static Picture casilleroBlanco(){
 		String [] img = new String[58];
 		for(int i = 0; i < img.length; i++){
 			char[] line = new char[58];
@@ -128,7 +155,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 	
-	public static Picture bishop(){
+  /**
+   * returns a new Picture object that represents a bishop
+   */
+	public static Picture alfil(){
 		String [] img = {
 			      "                                                          ",
 				  "                                                          ",
@@ -192,7 +222,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 	
-	public static Picture king(){
+  /**
+   * returns a new Picture object that represents a king
+   */
+	public static Picture rey(){
 		String [] img = {"                                                          ",
 				  "                                                          ",
 				  "                                                          ",
@@ -255,7 +288,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 
-	public static Picture knight(){
+  /**
+   * returns a new Picture object that represents a knight
+   */
+	public static Picture caballo(){
 		String [] img = {"                                                          ",
 				  "                                                          ",
 				  "                                                          ",
@@ -318,7 +354,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 
-	public static Picture pawn(){
+  /**
+   * returns a new Picture object that represents a pawn
+   */
+	public static Picture peon(){
 		String [] img = {"                                                          ",
 		                  "                                                          ",
 		                  "                                                          ",
@@ -381,7 +420,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 	
-	public static Picture queen(){
+  /**
+   * returns a new Picture object that represents a queen
+   */
+	public static Picture dama(){
 		String [] img = {"                                                          ",
 				  "                                                          ",
 				  "                                                          ",
@@ -444,7 +486,10 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 
-	public static Picture rock(){
+  /**
+   * returns a new Picture object that represents a rook
+   */
+	public static Picture torre(){
 		String [] img = {"                                                          ",
 		                  "                                                          ",
 		                  "                                                          ",
@@ -507,6 +552,9 @@ public class Picture implements Iterable<String>{
 		return new Picture(img);
 	}
 
+  /**
+   * Returns an iterator over the pixels in the image. The iteration is over columns and rows.
+   */
 	private class PIterator implements Iterator<String>{
 		private int index = 0;
 		@Override
@@ -522,6 +570,11 @@ public class Picture implements Iterable<String>{
 			return s;
 		}
 
+		@Override
+		public void remove() {
+      throw new UnsupportedOperationException("Not modification allowed");
+		}
+		
 	}
 	@Override
 	public Iterator<String> iterator() {
